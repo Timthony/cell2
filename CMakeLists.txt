@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.10)
+project(cell2)
+find_package(OpenCV)
+set(CMAKE_CXX_STANDARD 11)
+include_directories(${OpenCV_INCLUDE_DIRS})
+add_executable(cell2 main.cpp detectArea.cpp detectEdge.cpp detectEdge.h)
+target_link_libraries(cell2 ${OpenCV_LIBS})
