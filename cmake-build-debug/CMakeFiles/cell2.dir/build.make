@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2
+CMAKE_SOURCE_DIR = /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/cell2.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/cell2.dir/flags.make
 
 CMakeFiles/cell2.dir/main.cpp.o: CMakeFiles/cell2.dir/flags.make
 CMakeFiles/cell2.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cell2.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cell2.dir/main.cpp.o -c /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cell2.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cell2.dir/main.cpp.o -c /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/main.cpp
 
 CMakeFiles/cell2.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cell2.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/main.cpp > CMakeFiles/cell2.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/main.cpp > CMakeFiles/cell2.dir/main.cpp.i
 
 CMakeFiles/cell2.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cell2.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/main.cpp -o CMakeFiles/cell2.dir/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/main.cpp -o CMakeFiles/cell2.dir/main.cpp.s
 
 CMakeFiles/cell2.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/cell2.dir/main.cpp.o.provides.build: CMakeFiles/cell2.dir/main.cpp.o
 
 CMakeFiles/cell2.dir/detectArea.cpp.o: CMakeFiles/cell2.dir/flags.make
 CMakeFiles/cell2.dir/detectArea.cpp.o: ../detectArea.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cell2.dir/detectArea.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cell2.dir/detectArea.cpp.o -c /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectArea.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cell2.dir/detectArea.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cell2.dir/detectArea.cpp.o -c /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectArea.cpp
 
 CMakeFiles/cell2.dir/detectArea.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cell2.dir/detectArea.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectArea.cpp > CMakeFiles/cell2.dir/detectArea.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectArea.cpp > CMakeFiles/cell2.dir/detectArea.cpp.i
 
 CMakeFiles/cell2.dir/detectArea.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cell2.dir/detectArea.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectArea.cpp -o CMakeFiles/cell2.dir/detectArea.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectArea.cpp -o CMakeFiles/cell2.dir/detectArea.cpp.s
 
 CMakeFiles/cell2.dir/detectArea.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/cell2.dir/detectArea.cpp.o.provides.build: CMakeFiles/cell2.dir/detec
 
 CMakeFiles/cell2.dir/detectEdge.cpp.o: CMakeFiles/cell2.dir/flags.make
 CMakeFiles/cell2.dir/detectEdge.cpp.o: ../detectEdge.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cell2.dir/detectEdge.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cell2.dir/detectEdge.cpp.o -c /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectEdge.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cell2.dir/detectEdge.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cell2.dir/detectEdge.cpp.o -c /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.cpp
 
 CMakeFiles/cell2.dir/detectEdge.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cell2.dir/detectEdge.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectEdge.cpp > CMakeFiles/cell2.dir/detectEdge.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.cpp > CMakeFiles/cell2.dir/detectEdge.cpp.i
 
 CMakeFiles/cell2.dir/detectEdge.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cell2.dir/detectEdge.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectEdge.cpp -o CMakeFiles/cell2.dir/detectEdge.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.cpp -o CMakeFiles/cell2.dir/detectEdge.cpp.s
 
 CMakeFiles/cell2.dir/detectEdge.cpp.o.requires:
 
@@ -185,7 +185,7 @@ cell2: /usr/local/lib/libopencv_objdetect.3.3.0.dylib
 cell2: /usr/local/lib/libopencv_imgproc.3.3.0.dylib
 cell2: /usr/local/lib/libopencv_core.3.3.0.dylib
 cell2: CMakeFiles/cell2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable cell2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable cell2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cell2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -204,6 +204,6 @@ CMakeFiles/cell2.dir/clean:
 .PHONY : CMakeFiles/cell2.dir/clean
 
 CMakeFiles/cell2.dir/depend:
-	cd /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2 /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2 /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug /Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/CMakeFiles/cell2.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2 /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2 /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/CMakeFiles/cell2.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/cell2.dir/depend
 

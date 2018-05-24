@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\..\..\usr\local\share\OpenCV\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug"/>
+				<Option working_dir="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug"/>
+				<Option working_dir="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug"/>
+				<Option working_dir="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="cell2">
-				<Option output="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/cell2" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug"/>
+				<Option output="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/cell2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 cell2"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 cell2"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="cell2/fast">
-				<Option output="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/cell2" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug"/>
+				<Option output="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/cell2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,38 +77,38 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 cell2/fast"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 cell2/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectArea.cpp">
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectArea.cpp">
 			<Option target="cell2"/>
 		</Unit>
-		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectEdge.cpp">
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.cpp">
 			<Option target="cell2"/>
 		</Unit>
-		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectEdge.h">
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.h">
 			<Option target="cell2"/>
 		</Unit>
-		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/main.cpp">
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/main.cpp">
 			<Option target="cell2"/>
 		</Unit>
-		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/CMakeLists.txt">
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/../../../../../../usr/local/share/OpenCV/OpenCVConfig-version.cmake">
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/../../../../../../usr/local/share/OpenCV/OpenCVConfig-version.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
 		</Unit>
-		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/../../../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/../../../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
 		</Unit>
-		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/../../../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/../../../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
 		</Unit>
-		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/../../../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/../../../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\local\share\OpenCV\"/>
 		</Unit>
 	</Project>

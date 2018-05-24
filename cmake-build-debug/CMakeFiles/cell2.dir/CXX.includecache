@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectArea.cpp
+/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectArea.cpp
 
-/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectEdge.cpp
+/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.cpp
 detectEdge.h
-/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectEdge.h
+/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.h
 
-/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectEdge.h
+/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.h
 iostream
 -
 algorithm
@@ -26,7 +26,7 @@ opencv2/imgproc/imgproc.hpp
 ctime
 -
 
-/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/main.cpp
+/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/main.cpp
 iostream
 -
 fstream
@@ -40,7 +40,7 @@ opencv2/highgui.hpp
 opencv2/imgproc.hpp
 -
 detectEdge.h
-/Users/arcstone_mems_108/Desktop/keyan/gitproject/cell2/detectEdge.h
+/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.h
 
 /usr/local/include/boost/assert.hpp
 boost/config.hpp
