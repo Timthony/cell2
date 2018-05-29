@@ -43,6 +43,8 @@ vector<Point2f> pointflow_nowcp;                                     //保存之
 int ks;                                                              //定义播放多少帧暂停一次
 Point node_ROI;                                                      //定义基于有ROI区域的标志点坐标
 Point node_img;                                                      //定义基于原始图的标志点的坐标
+int chou_begin;                                                      //定义抽核过程开始的帧数
+int chou_end;                                                        //定义抽核过程结束的帧数
 //-------------------------------------【全局函数声明】----------------------------------------
 void drawOptFlowMap(const Mat& flow, Mat& cflowmap, int step, const Scalar& color);
 static void onMouse(int event, int x, int y, int, void*);
@@ -53,7 +55,7 @@ Point getNode(Mat frame_n);
 int main()
 {
     outfile.open("data.txt");
-    VideoCapture capture("test_l.avi");
+    VideoCapture capture("/Users/arcstone_mems_108/Desktop/result/自动抽核/次靠前/test_1_9.avi");
     capture>>firstImage;
     image_cols = firstImage.cols;
     image_rows = firstImage.rows;
@@ -63,7 +65,13 @@ int main()
     }
 
     int delay = 30;                                                  //设置等待的时间
-    ks = 10;                                                         //每播放20帧暂停一次，***换视频必调参数***
+
+    //-------------------------【更换原视频必调参数】--------------------------------------
+    ks = 5;                                                         //每播放20帧暂停一次，***换视频必调参数***
+    chou_begin = 138;                                                 //
+    chou_end = 158;
+
+    //------------------------------------------------------------------------------------------------
     while(true)
     {
         capture>>frame;
@@ -82,7 +90,7 @@ int main()
             tracking(image, result);
         }
         //每播放ks帧，暂停一次
-        if( k>=143 && (k-143)%ks == 0 || (k-178) == 0)               //从多少帧开始取点，并且隔多少帧再次取点，***换视频必调参数***
+        if( k>=chou_begin && (k-chou_begin)%ks == 0 || (k-chou_end) == 0)               //从多少帧开始取点，并且隔多少帧再次取点，***换视频必调参数***
         {
             waitKey(0);
         }
@@ -130,11 +138,15 @@ static void onMouse(int event, int x, int y, int, void*)
 /*定义光流跟踪的函数*/
 void tracking(Mat &frame, Mat &output)
 {
+    //液面跟踪模块
     if(k > 140)
     {
         getNode(frame);
         cout<<"-----------最终标志点的坐标为:"<<node_img<<endl;
     }
+
+
+    //光流计算模块
     cvtColor(frame, gray, COLOR_BGR2GRAY);
     frame.copyTo(output);
     //Mat ROI_img;                                                 //定义进行光流计算的区域
@@ -170,11 +182,11 @@ void tracking(Mat &frame, Mat &output)
         //pointflow_nowcp应该每画一次新的矩形，变动一次，现在是每一帧都回到原始点，造成位移不能累加
         //当移动到的帧数为画新矩形的下一帧时，给pointflow_nowcp赋予新的值，否则不赋予新的值，该变量即可实现累加
         //该数值为第一次取点的帧数+间隔+1
-        if((k-154)%ks == 0)                                          //***换视频必调参数***，给跟踪区域的点集重新赋值，即重新取点的那一帧
+        if((k-(chou_begin+ks+1))%ks == 0)                                          //***换视频必调参数***，给跟踪区域的点集重新赋值，即重新取点的那一帧
         {
             pointflow_nowcp = points_temp;
         }
-        if(k > 178)
+        if(k > chou_end)
         {
             imshow(window_name, output);
         }
@@ -227,6 +239,9 @@ void tracking(Mat &frame, Mat &output)
 
 }
 
+
+
+//获得标志点
 Point getNode(Mat frame_n)
 {
     detectEdge detedge;                                              //实例化一个对象，用于检测当前帧边缘的标志点
