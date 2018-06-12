@@ -31,17 +31,24 @@ public:
     vector<Vec3f> cell_circles;
     vector<Vec4i> hierarchy;
     vector<vector<Point>> contours;
-    vector<Point2f> cell_point_temp;                                               //存放需要检测的点，临时数组，用于筛选
-    vector<Point2f> cell_point1;                                                   //存放需要检测的点，最终送入光流检测函数的数组
-    int img_h;                                                                     //图像的原始尺寸，行数
-    int img_w;                                                                     //图像的原始尺寸，列数
+    vector<Point2f> cell_point_temp;                                 //存放需要检测的点，临时数组，用于筛选
+    vector<Point2f> cell_point1;                                     //存放需要检测的点，最终送入光流检测函数的数组
+    int img_h;                                                       //图像的原始尺寸，行数
+    int img_w;                                                       //图像的原始尺寸，列数
     Mat first_Image;
     int radius_out;
+    Mat cell_flow_gray, cell_flow_pre;
+    vector<uchar> status;
+    vector<float> err;
+    vector<Point2f> points[2];                                       // point0为特征点的原来位置，point1为特征点的新位置
     //成员函数定义
 public:
     //输入源图像，输出细胞内取点的坐标容器
     vector<Point2f> detectCell(Mat input_Image,int img_h, int img_w);
     vector<Point2f> detect_hough_circle(Mat inputImageintl, int img_h, int img_w);
+    //光流计算，返回当前帧跟踪得到的点
+    vector<Point2f> flow_in_cell(Mat frame, vector<Point2f> points);
+
 
 };
 

@@ -130,4 +130,20 @@ vector<Point2f> detectCellContour::detectCell(Mat input_Image, int img_h, int im
     //waitKey(0);
 }
 
+vector<Point2f> detectCellContour::flow_in_cell(Mat frame, vector<Point2f> input_points)
+{
+    cvtColor(frame, cell_flow_gray, COLOR_BGR2GRAY);                 //将输入图像转换为灰度图
+    points[0] = input_points;                                        //初始化特征点的位置
+    if(cell_flow_pre.empty())
+    {
+        cell_flow_gray.copyTo(cell_flow_pre);
+    }
+    calcOpticalFlowPyrLK(cell_flow_pre, cell_flow_gray, points[0], points[1], status, err);
+
+    swap(points[1], points[0]);
+    swap(cell_flow_pre, cell_flow_gray);
+
+    return points[1];                                                //返回新的一帧特征点的位置
+
+}
 

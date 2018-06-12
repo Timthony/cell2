@@ -59,6 +59,8 @@ opencv2/imgproc.hpp
 -
 detectEdge.h
 /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.h
+detectCellContour.h
+/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectCellContour.h
 
 /usr/local/include/boost/assert.hpp
 boost/config.hpp

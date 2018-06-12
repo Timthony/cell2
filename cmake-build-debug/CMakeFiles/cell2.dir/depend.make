@@ -465,6 +465,7 @@ CMakeFiles/cell2.dir/detectEdge.cpp.o: /usr/local/include/opencv2/xfeatures2d.hp
 CMakeFiles/cell2.dir/detectEdge.cpp.o: /usr/local/include/opencv2/xfeatures2d/cuda.hpp
 CMakeFiles/cell2.dir/detectEdge.cpp.o: /usr/local/include/opencv2/xfeatures2d/nonfree.hpp
 
+CMakeFiles/cell2.dir/main.cpp.o: ../detectCellContour.h
 CMakeFiles/cell2.dir/main.cpp.o: ../detectEdge.h
 CMakeFiles/cell2.dir/main.cpp.o: ../main.cpp
 CMakeFiles/cell2.dir/main.cpp.o: /usr/local/include/boost/assert.hpp

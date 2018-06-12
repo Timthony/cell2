@@ -11,6 +11,7 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include "detectEdge.h"
+#include "detectCellContour.h"
 using namespace std;
 using namespace cv;
 
@@ -31,8 +32,8 @@ Mat gray_detect;                                                     //进行检
 Mat cflow;
 Mat outimg_detect;                                                   //边缘检测后输出的视频帧
 int trackObject = 0;
-int image_cols;                                                  //读入视频的列数，宽
-int image_rows;                                                  //读入视频的行数，高
+int image_cols;                                                      //读入视频的列数，宽
+int image_rows;                                                      //读入视频的行数，高
 int k = 0;                                                           //记录当前正在播放的帧数
 vector<Point2f> points_temp;                                         //存放需要跟踪的临时点
 vector<Point2f> points1;                                             //存放需要跟踪的点
@@ -46,22 +47,31 @@ Point node_img;                                                      //定义基
 int chou_begin;                                                      //定义抽核过程开始的帧数
 int chou_end;                                                        //定义抽核过程结束的帧数
 Mat cell_inside;                                                     //定义细胞内部的检测区域
-//int img_input_H;                                                     //输入图像的高度
-//int img_input_W;                                                     //输入图像的宽度
+vector<Point2f> firstNode;                                           //定义细胞内部选取的初始点
+vector<Point2f> cell_points[2];                                      //定义细胞内部的点，[0]当前帧，[1]下一帧
+vector<uchar> status;
+vector<float> err;
+Mat cell_flow_gray, cell_flow_pre;
 //-------------------------------------【全局函数声明】----------------------------------------
 void drawOptFlowMap(const Mat& flow, Mat& cflowmap, int step, const Scalar& color);
 static void onMouse(int event, int x, int y, int, void*);
 void tracking(Mat &frame, Mat &output);                              //跟踪函数
 Point getNode(Mat frame_n);
-
+void track_cell_in(Mat &frame1, Mat &output1);                       //检测细胞内部的物质
 //--------------------------------------【主函数】--------------------------------------------
 int main()
 {
     outfile.open("data.txt");
-    VideoCapture capture("/Users/arcstone_mems_108/Desktop/result/自动抽核/最靠前/test_4_10.avi");
+    //VideoCapture capture("/Users/arcstone_mems_108/Desktop/result/自动抽核/最靠前/test_4_10.avi");
+    VideoCapture capture("/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/cmake-build-debug/test_2.avi");
     capture>>firstImage;
     image_cols = firstImage.cols;
     image_rows = firstImage.rows;
+    //对细胞内的物质进行光流检测
+    Mat inputImage = imread("/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell_edge_detection/untitled/cmake-build-debug/10/120.jpg");
+    detectCellContour det_cell_circle;
+    //输入第一帧的图像，返回检测到的轮廓包含的点
+    firstNode = det_cell_circle.detect_hough_circle(inputImage, image_rows, image_cols);//霍夫圆检测，返回初始帧需要跟踪的点
     if(!capture.isOpened())
     {
         cout<<"原始视频未能正确打开！"<<endl;
@@ -141,13 +151,19 @@ static void onMouse(int event, int x, int y, int, void*)
 /*定义光流跟踪的函数*/
 void tracking(Mat &frame, Mat &output)
 {
-    //液面跟踪模块
+//-----------------------------------------------【液面跟踪模块】----------------------------------------------
     if(k > 140)
     {
         getNode(frame);
         cout<<"-----------最终标志点的坐标为:"<<node_img<<endl;
     }
-    //针管内光流计算模块
+    //绘制液面位置的标志线
+    if(node_img.x != 0 && node_img.y != 0)
+    {
+        circle(output, node_img, 2, CV_RGB(0,0,255), -1);//绘制检测得到的液面位置标志点
+        line(output, Point(node_img.x, node_img.y-17), Point(node_img.x, node_img.y+17), Scalar(0,0,255), 2, 8);//绘制液面位置的线
+    }
+//----------------------------------------------【针管内光流计算模块】----------------------------------------
     cvtColor(frame, gray, COLOR_BGR2GRAY);
     frame.copyTo(output);
     //Mat ROI_img;                                                 //定义进行光流计算的区域
@@ -158,8 +174,6 @@ void tracking(Mat &frame, Mat &output)
                   Point(selection.x + selection.width,
                         selection.y + selection.height), Scalar(255, 0, 0), 0.5, 8);
     }
-    //定义细胞内需要光流检测的模块
-    //cell_inside = frame(Rect(image_cols, image_rows,image_cols, image_rows,))
 
     //鼠标抬起时，进行检测
     if(trackObject == -1)
@@ -233,16 +247,34 @@ void tracking(Mat &frame, Mat &output)
                 //if(point_n.x>output.cols-1)          point_n.x = output.cols-1;
                 //if(point_n.y<0)                      point_n.y = 0;
             }
-
             swap(gray_prev, gray);
         }
     }
-    circle(output, node_img, 2, CV_RGB(0,0,255), -1);
-    line(output, Point(node_img.x, node_img.y-17), Point(node_img.x, node_img.y+17), Scalar(0,0,255), 2, 8);
+
+//---------------------------------------【计算细胞内的运动】--------------------------
+    //对细胞内的区域进行检测
+    if(cell_points[0].size() == 0)
+    {
+        cell_points[0] = firstNode;//初始化特征点的位置
+    }
+    //进行光流计算，得到cell_points[1]的值
+    cvtColor(frame, cell_flow_gray, COLOR_BGR2GRAY);                 //将输入图像转换为灰度图
+    if(cell_flow_pre.empty())
+    {
+        cell_flow_gray.copyTo(cell_flow_pre);
+    }
+    calcOpticalFlowPyrLK(cell_flow_pre, cell_flow_gray, cell_points[0], cell_points[1], status, err);
+    //画出预测得到的特征点的位置
+    for (int j = 0; j < cell_points[1].size(); j++)
+    {
+        circle(output, cell_points[1][j], 2, Scalar(0,100,200),-1);
+    }
+    swap(cell_points[1], cell_points[0]);
+    swap(cell_flow_pre, cell_flow_gray);
+//-------------------------------------------【显示最终的画面】----------------------------------------
     imshow(window_name, output);
 
 }
-
 
 
 //获得标志点
@@ -253,6 +285,16 @@ Point getNode(Mat frame_n)
     node_img = detedge.get_node(node_ROI);                           //返回基于原始图的标志点的坐标
     return node_img;
 }
+
+
+////获得初始帧需要跟踪的特征点
+//vector<Point2f> getfirstNode(Mat firstImage)
+//{
+//    detectCellContour det_cell_circle;
+//    firstNode = det_cell_circle.detect_hough_circle(frame, image_rows, image_cols);//霍夫圆检测，返回初始帧需要跟踪的点
+//}
+
+
 
 
 
