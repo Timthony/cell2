@@ -1,5 +1,6 @@
 //
 // Created by arcstone_mems on 2018/5/23.
+// 用于检测抽取物质的液面位置，最终用竖线来标识液面位置
 //
 
 #ifndef CELL2_DETECTEDGE_H

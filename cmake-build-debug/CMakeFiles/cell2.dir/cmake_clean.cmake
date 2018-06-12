@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/cell2.dir/main.cpp.o"
   "CMakeFiles/cell2.dir/detectArea.cpp.o"
   "CMakeFiles/cell2.dir/detectEdge.cpp.o"
+  "CMakeFiles/cell2.dir/detectCellContour.cpp.o"
   "cell2.pdb"
   "cell2"
 )

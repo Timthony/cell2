@@ -87,6 +87,12 @@
 		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectArea.cpp">
 			<Option target="cell2"/>
 		</Unit>
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectCellContour.cpp">
+			<Option target="cell2"/>
+		</Unit>
+		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectCellContour.h">
+			<Option target="cell2"/>
+		</Unit>
 		<Unit filename="/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.cpp">
 			<Option target="cell2"/>
 		</Unit>

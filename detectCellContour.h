@@ -1,6 +1,7 @@
 //
 // Created by arcstone_mems on 2018/6/8.
 // 检测细胞的圆轮廓，用于检测细胞内的物质流动规定感兴趣的区域
+// 包含两种方法检测细胞的轮廓，边缘检测和霍夫圆检测
 //
 
 #ifndef CELL2_DETECTCELLCONTOUR_H
@@ -23,32 +24,24 @@ using namespace cv;
 class detectCellContour {
     //成员变量定义
 public:
-    Mat det_cell_img;                                                //存放要检测图片
-
-
-
-
+    Mat img_cell_detect;
+    Mat img_cell_roi;
+    Mat img_cell_gray;
+    Mat img_cell_gray1; //canny变换后的图像
+    vector<Vec3f> cell_circles;
+    vector<Vec4i> hierarchy;
+    vector<vector<Point>> contours;
+    vector<Point2f> cell_point_temp;                                               //存放需要检测的点，临时数组，用于筛选
+    vector<Point2f> cell_point1;                                                   //存放需要检测的点，最终送入光流检测函数的数组
+    int img_h;                                                                     //图像的原始尺寸，行数
+    int img_w;                                                                     //图像的原始尺寸，列数
+    Mat first_Image;
+    int radius_out;
     //成员函数定义
 public:
-    //Point det_cell_Contour(Mat )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //输入源图像，输出细胞内取点的坐标容器
+    vector<Point2f> detectCell(Mat input_Image,int img_h, int img_w);
+    vector<Point2f> detect_hough_circle(Mat inputImageintl, int img_h, int img_w);
 
 };
 

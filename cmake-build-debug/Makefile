@@ -150,6 +150,33 @@ detectArea.cpp.s:
 	$(MAKE) -f CMakeFiles/cell2.dir/build.make CMakeFiles/cell2.dir/detectArea.cpp.s
 .PHONY : detectArea.cpp.s
 
+detectCellContour.o: detectCellContour.cpp.o
+
+.PHONY : detectCellContour.o
+
+# target to build an object file
+detectCellContour.cpp.o:
+	$(MAKE) -f CMakeFiles/cell2.dir/build.make CMakeFiles/cell2.dir/detectCellContour.cpp.o
+.PHONY : detectCellContour.cpp.o
+
+detectCellContour.i: detectCellContour.cpp.i
+
+.PHONY : detectCellContour.i
+
+# target to preprocess a source file
+detectCellContour.cpp.i:
+	$(MAKE) -f CMakeFiles/cell2.dir/build.make CMakeFiles/cell2.dir/detectCellContour.cpp.i
+.PHONY : detectCellContour.cpp.i
+
+detectCellContour.s: detectCellContour.cpp.s
+
+.PHONY : detectCellContour.s
+
+# target to generate assembly for a file
+detectCellContour.cpp.s:
+	$(MAKE) -f CMakeFiles/cell2.dir/build.make CMakeFiles/cell2.dir/detectCellContour.cpp.s
+.PHONY : detectCellContour.cpp.s
+
 detectEdge.o: detectEdge.cpp.o
 
 .PHONY : detectEdge.o
@@ -216,6 +243,9 @@ help:
 	@echo "... detectArea.o"
 	@echo "... detectArea.i"
 	@echo "... detectArea.s"
+	@echo "... detectCellContour.o"
+	@echo "... detectCellContour.i"
+	@echo "... detectCellContour.s"
 	@echo "... detectEdge.o"
 	@echo "... detectEdge.i"
 	@echo "... detectEdge.s"
