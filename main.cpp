@@ -31,8 +31,8 @@ Mat gray_detect;                                                     //进行检
 Mat cflow;
 Mat outimg_detect;                                                   //边缘检测后输出的视频帧
 int trackObject = 0;
-int image_cols = 0;                                                  //读入视频的列数，宽
-int image_rows = 0;                                                  //读入视频的行数，高
+int image_cols;                                                  //读入视频的列数，宽
+int image_rows;                                                  //读入视频的行数，高
 int k = 0;                                                           //记录当前正在播放的帧数
 vector<Point2f> points_temp;                                         //存放需要跟踪的临时点
 vector<Point2f> points1;                                             //存放需要跟踪的点
@@ -45,6 +45,9 @@ Point node_ROI;                                                      //定义基
 Point node_img;                                                      //定义基于原始图的标志点的坐标
 int chou_begin;                                                      //定义抽核过程开始的帧数
 int chou_end;                                                        //定义抽核过程结束的帧数
+Mat cell_inside;                                                     //定义细胞内部的检测区域
+//int img_input_H;                                                     //输入图像的高度
+//int img_input_W;                                                     //输入图像的宽度
 //-------------------------------------【全局函数声明】----------------------------------------
 void drawOptFlowMap(const Mat& flow, Mat& cflowmap, int step, const Scalar& color);
 static void onMouse(int event, int x, int y, int, void*);
@@ -55,7 +58,7 @@ Point getNode(Mat frame_n);
 int main()
 {
     outfile.open("data.txt");
-    VideoCapture capture("/Users/arcstone_mems_108/Desktop/result/自动抽核/次靠前/test_1_9.avi");
+    VideoCapture capture("/Users/arcstone_mems_108/Desktop/result/自动抽核/最靠前/test_4_10.avi");
     capture>>firstImage;
     image_cols = firstImage.cols;
     image_rows = firstImage.rows;
@@ -67,9 +70,9 @@ int main()
     int delay = 30;                                                  //设置等待的时间
 
     //-------------------------【更换原视频必调参数】--------------------------------------
-    ks = 5;                                                         //每播放20帧暂停一次，***换视频必调参数***
-    chou_begin = 138;                                                 //
-    chou_end = 158;
+    ks = 10;                                                         //每播放20帧暂停一次，***换视频必调参数***
+    chou_begin = 178;                                                 //
+    chou_end = 258;
 
     //------------------------------------------------------------------------------------------------
     while(true)
@@ -144,9 +147,7 @@ void tracking(Mat &frame, Mat &output)
         getNode(frame);
         cout<<"-----------最终标志点的坐标为:"<<node_img<<endl;
     }
-
-
-    //光流计算模块
+    //针管内光流计算模块
     cvtColor(frame, gray, COLOR_BGR2GRAY);
     frame.copyTo(output);
     //Mat ROI_img;                                                 //定义进行光流计算的区域
@@ -157,6 +158,9 @@ void tracking(Mat &frame, Mat &output)
                   Point(selection.x + selection.width,
                         selection.y + selection.height), Scalar(255, 0, 0), 0.5, 8);
     }
+    //定义细胞内需要光流检测的模块
+    //cell_inside = frame(Rect(image_cols, image_rows,image_cols, image_rows,))
+
     //鼠标抬起时，进行检测
     if(trackObject == -1)
     {
