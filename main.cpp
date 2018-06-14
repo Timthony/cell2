@@ -52,12 +52,14 @@ vector<Point2f> cell_points[2];                                      //定义细
 vector<uchar> status;
 vector<float> err;
 Mat cell_flow_gray, cell_flow_pre;
+const double pi=3.14;
 //-------------------------------------【全局函数声明】----------------------------------------
 void drawOptFlowMap(const Mat& flow, Mat& cflowmap, int step, const Scalar& color);
 static void onMouse(int event, int x, int y, int, void*);
 void tracking(Mat &frame, Mat &output);                              //跟踪函数
 Point getNode(Mat frame_n);
 void track_cell_in(Mat &frame1, Mat &output1);                       //检测细胞内部的物质
+void drawarrow(Mat output, Point2f f_pre, Point2f f_now, int n);     //画箭头
 //--------------------------------------【主函数】--------------------------------------------
 int main()
 {
@@ -81,8 +83,8 @@ int main()
 
     //-------------------------【更换原视频必调参数】--------------------------------------
     ks = 10;                                                         //每播放20帧暂停一次，***换视频必调参数***
-    chou_begin = 178;                                                 //
-    chou_end = 258;
+    chou_begin = 110;                                                 //
+    chou_end = 218;
 
     //------------------------------------------------------------------------------------------------
     while(true)
@@ -267,7 +269,10 @@ void tracking(Mat &frame, Mat &output)
     //画出预测得到的特征点的位置
     for (int j = 0; j < cell_points[1].size(); j++)
     {
-        circle(output, cell_points[1][j], 2, Scalar(0,100,200),-1);
+        //circle(output, cell_points[1][j], 2, Scalar(0,100,200),-1);
+        //画箭头
+        drawarrow(output, cell_points[0][j], cell_points[1][j], 5);
+
     }
     swap(cell_points[1], cell_points[0]);
     swap(cell_flow_pre, cell_flow_gray);
@@ -294,7 +299,41 @@ Point getNode(Mat frame_n)
 //    firstNode = det_cell_circle.detect_hough_circle(frame, image_rows, image_cols);//霍夫圆检测，返回初始帧需要跟踪的点
 //}
 
+void drawarrow(Mat output, Point2f f_pre, Point2f f_now, int n)
+{
+    Scalar mycolor[10];
+    mycolor[0]=CV_RGB(0,0,170);
+    mycolor[1]=CV_RGB(0,0,255);
+    mycolor[2]=CV_RGB(0,85,255);
+    mycolor[3]=CV_RGB(0,170,255);
+    mycolor[4]=CV_RGB(0,255,255);
+    mycolor[5]=CV_RGB(85,255,170);
+    mycolor[6]=CV_RGB(170,255,85);
+    mycolor[7]=CV_RGB(255,255,0);
+    mycolor[8]=CV_RGB(255,170,0);
+    mycolor[9]=CV_RGB(255,85,0);
 
+    double ff = sqrt((f_now.x-f_pre.x)*(f_now.x-f_pre.x)+(f_now.y-f_pre.y)*(f_now.y-f_pre.y));        //当前点的速度
+    int v_b = ceil(fabs(ff)*2)-1;
+    if(v_b<0){v_b=0;}
+    if(v_b>9){v_b=9;}
+    line(output,f_pre,f_now,mycolor[v_b]);              //移动轨迹的线
+    //画箭头
+    Point2f arrow1;
+    Point2f arrow2;
+    double xx;
+    double yy;
+    double angle = atan2((f_now.y - f_pre.y), (f_now.x-f_pre.x));
+    arrow1.x = f_now.x + cos(angle+pi*15/180);
+    arrow1.y = f_now.y + sin(angle+pi*15/180);
+    line(output, f_now, arrow1, mycolor[v_b]);
+    arrow2.x = f_now.x + cos(angle-pi*15/180);
+    arrow2.y = f_now.y + sin(angle-pi*15/180);
+    line(output, f_now, arrow2, mycolor[v_b]);
+
+    circle(output, f_now, 1, Scalar(255,0,0),-1);
+
+}
 
 
 
