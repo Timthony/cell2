@@ -58,7 +58,14 @@ vector<Point2f> detectCellContour::detect_hough_circle(Mat inputImage,int img_h,
     //imshow("【效果图】",inputImage);
     //waitKey(0);
     return cell_point1;
+    //返回检测到的圆的区域,返回圆心的坐标
+    //return cell_center;
 }
+
+
+
+
+
 
 
 vector<Point2f> detectCellContour::detectCell(Mat input_Image, int img_h, int img_w)
@@ -144,6 +151,65 @@ vector<Point2f> detectCellContour::flow_in_cell(Mat frame, vector<Point2f> input
     swap(cell_flow_pre, cell_flow_gray);
 
     return points[1];                                                //返回新的一帧特征点的位置
+
+}
+result_circle detectCellContour::detect_hough_circle_center(Mat inputImage, int img_h, int img_w)
+{
+    Mat cell_midimage,inputImage_roi;
+    Point2f cell_center;                                                               //定义细胞的中心
+    int cell_img_w = inputImage.cols;
+    int cell_img_h = inputImage.rows;
+    inputImage_roi = inputImage(Rect(img_w*0.07, img_h*0.25, img_w*0.30, img_h*0.5));//定义感兴趣的检测区域
+    cvtColor(inputImage_roi, cell_midimage,COLOR_BGR2GRAY);//将图像转为灰度图
+    //GaussianBlur(cell_midimage,cell_midimage,Size(9,9),2,2);
+    //imshow("滤波后", cell_midimage);
+    //waitKey(0);
+    //进行霍夫圆变换
+    HoughCircles(cell_midimage, cell_circles,HOUGH_GRADIENT,1.5,20,130,130,0,0);
+    cout<<"当前检测到的圆个数为："<<cell_circles.size()<<endl;
+    if(cell_circles.size() != 1)
+    {
+        cout<<"请重新调整霍夫圆检测的参数"<<endl;
+    }
+    else
+    {
+        cell_center.x = cvRound(cell_circles[0][0]) + img_w*0.07;
+        cell_center.y = cvRound(cell_circles[0][1]) + img_h*0.25;
+        int radius = cvRound(cell_circles[0][2]);
+        circle(inputImage, cell_center, 3, Scalar(0,255,0), -1, 8, 0);
+        circle(inputImage, cell_center, radius, Scalar(155,50,255), 1 , 8, 0);
+        //细胞的外轮廓
+
+        radius_out = radius + 30;
+        circle(inputImage, cell_center, radius_out, Scalar(155,50,0), 2, 8, 0);
+    }
+    //画出需要检测区域，之后再该区域取点，假如点距离圆心的距离小于半径，那么就在圆内
+    for (int y = 0; y < cell_img_h; y+=10)
+    {
+        for (int x = 0; x < cell_img_w; x+=10)
+        {
+            //计算图像上的点到圆心的距离，如果距离小于半径，那么该点在圆内
+            float distance = sqrtf(pow((x - cell_center.x), 2) + pow((y - cell_center.y), 2));
+            if(distance < radius_out)
+            {
+                cell_point_temp.push_back(Point(x,y));
+            }
+        }
+    }
+    cell_point1 = cell_point_temp;
+    for (int k = 0; k < cell_point1.size(); k++)
+    {
+        //画出容器内的所有点
+        circle(inputImage, Point2f(cell_point1[k].x,cell_point1[k].y),1,Scalar(0,255,0),-1,8);
+    }
+
+    //imshow("【效果图】",inputImage);
+    //waitKey(0);
+    struct result_circle result_circle1;                             //实例化一个结构体类型，用于存放返回的值
+    result_circle1.radius_out = radius_out;
+    result_circle1.cell_center = cell_center;
+    result_circle1.first_Node = cell_point1;
+    return result_circle1;
 
 }
 

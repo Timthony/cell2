@@ -20,6 +20,14 @@
 
 using namespace std;
 using namespace cv;
+//定义结构体，用于返回检测到的圆的取点，圆心坐标以及圆的外轮廓半径
+struct result_circle
+{
+    vector<Point2f> first_Node;
+    Point2f cell_center;
+    int radius_out;
+};
+
 
 class detectCellContour {
     //成员变量定义
@@ -41,14 +49,15 @@ public:
     vector<uchar> status;
     vector<float> err;
     vector<Point2f> points[2];                                       // point0为特征点的原来位置，point1为特征点的新位置
+
     //成员函数定义
 public:
     //输入源图像，输出细胞内取点的坐标容器
     vector<Point2f> detectCell(Mat input_Image,int img_h, int img_w);
-    vector<Point2f> detect_hough_circle(Mat inputImageintl, int img_h, int img_w);
+    vector<Point2f> detect_hough_circle(Mat inputImage, int img_h, int img_w);
     //光流计算，返回当前帧跟踪得到的点
     vector<Point2f> flow_in_cell(Mat frame, vector<Point2f> points);
-
+    result_circle detect_hough_circle_center(Mat inputImage, int img_h, int img_w);
 
 };
 

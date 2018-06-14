@@ -16,6 +16,8 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cell2.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cell2.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/cell2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cell2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/detectCellContour.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/detectCellContour.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/detectCellContour.h" beforeDir="false" afterPath="$PROJECT_DIR$/detectCellContour.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -32,8 +34,8 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="601">
-              <caret line="332" lean-forward="true" selection-start-line="332" selection-end-line="332" />
+            <state relative-caret-position="170">
+              <caret line="66" column="89" lean-forward="true" selection-start-line="66" selection-start-column="89" selection-end-line="66" selection-end-column="89" />
               <folding>
                 <element signature="e#156#175#0" expanded="true" />
               </folding>
@@ -44,11 +46,8 @@
       <file leaf-file-name="detectCellContour.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/detectCellContour.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="902">
-              <caret line="41" column="22" selection-start-line="40" selection-start-column="3" selection-end-line="41" selection-end-column="22" />
-              <folding>
-                <element signature="e#150#169#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="223">
+              <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -56,8 +55,8 @@
       <file leaf-file-name="detectCellContour.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/detectCellContour.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2882">
-              <caret line="131" selection-start-line="131" selection-end-line="131" />
+            <state relative-caret-position="961">
+              <caret line="211" column="26" lean-forward="true" selection-start-line="211" selection-start-column="26" selection-end-line="211" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -105,8 +104,8 @@
         <option value="$PROJECT_DIR$/思路.txt" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/detectEdge.h" />
-        <option value="$PROJECT_DIR$/detectCellContour.cpp" />
         <option value="$PROJECT_DIR$/detectCellContour.h" />
+        <option value="$PROJECT_DIR$/detectCellContour.cpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
@@ -118,7 +117,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="263" />
+    <option name="x" value="538" />
     <option name="y" value="23" />
     <option name="width" value="1871" />
     <option name="height" value="1494" />
@@ -221,7 +220,7 @@
       <workItem from="1528620050953" duration="23000" />
       <workItem from="1528789446923" duration="12147000" />
       <workItem from="1528874021230" duration="3402000" />
-      <workItem from="1528949170947" duration="1368000" />
+      <workItem from="1528949170947" duration="19429000" />
     </task>
     <task id="LOCAL-00001" summary="第二次添加">
       <created>1527150377046</created>
@@ -234,10 +233,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39014000" />
+    <option name="totallyTimeSpent" value="57075000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="263" y="23" width="1871" height="1494" extended-state="0" />
+    <frame x="538" y="23" width="1871" height="1494" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16729023" />
@@ -282,7 +281,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -648,25 +647,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/detectCellContour.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2882">
-          <caret line="131" selection-start-line="131" selection-end-line="131" />
+        <state relative-caret-position="961">
+          <caret line="211" column="26" lean-forward="true" selection-start-line="211" selection-start-column="26" selection-end-line="211" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/detectCellContour.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="902">
-          <caret line="41" column="22" selection-start-line="40" selection-start-column="3" selection-end-line="41" selection-end-column="22" />
-          <folding>
-            <element signature="e#150#169#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="223">
+          <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
-          <caret line="332" lean-forward="true" selection-start-line="332" selection-end-line="332" />
+        <state relative-caret-position="170">
+          <caret line="66" column="89" lean-forward="true" selection-start-line="66" selection-start-column="89" selection-end-line="66" selection-end-column="89" />
           <folding>
             <element signature="e#156#175#0" expanded="true" />
           </folding>

@@ -28,8 +28,10 @@ Mat firstImage;                                                      //保存视
 Mat gray;                                                            //定义当前帧的图像
 Mat gray_prev;                                                       //预测帧的图像
 Mat flow;                                                            //光流矩阵
+Mat cell_flow;                                                       //细胞内部的光流矩阵
 Mat gray_detect;                                                     //进行检测的灰度图
 Mat cflow;
+Mat cell_cflow;
 Mat outimg_detect;                                                   //边缘检测后输出的视频帧
 int trackObject = 0;
 int image_cols;                                                      //读入视频的列数，宽
@@ -41,6 +43,7 @@ int z = 0;
 ofstream outfile;
 vector<Point2f> pointflow_now;                                       //保存之前选定的那些点，每个点最新的坐标
 vector<Point2f> pointflow_nowcp;                                     //保存之前选定的那些点，每个点最新的坐标
+vector<Point2f> cell_pointflow_nowcp;
 int ks;                                                              //定义播放多少帧暂停一次
 Point node_ROI;                                                      //定义基于有ROI区域的标志点坐标
 Point node_img;                                                      //定义基于原始图的标志点的坐标
@@ -53,6 +56,7 @@ vector<uchar> status;
 vector<float> err;
 Mat cell_flow_gray, cell_flow_pre;
 const double pi=3.14;
+Point2f cell_center;
 //-------------------------------------【全局函数声明】----------------------------------------
 void drawOptFlowMap(const Mat& flow, Mat& cflowmap, int step, const Scalar& color);
 static void onMouse(int event, int x, int y, int, void*);
@@ -73,7 +77,17 @@ int main()
     Mat inputImage = imread("/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell_edge_detection/untitled/cmake-build-debug/10/120.jpg");
     detectCellContour det_cell_circle;
     //输入第一帧的图像，返回检测到的轮廓包含的点
-    firstNode = det_cell_circle.detect_hough_circle(inputImage, image_rows, image_cols);//霍夫圆检测，返回初始帧需要跟踪的点
+    //firstNode = det_cell_circle.detect_hough_circle(inputImage, image_rows, image_cols);//霍夫圆检测，返回初始帧需要跟踪的点
+    result_circle result_circle1;
+    result_circle1  =det_cell_circle.detect_hough_circle_center(inputImage, image_rows, image_cols);//霍夫圆检测，返回检测到圆的圆心等信息
+    cell_points[0] = result_circle1.first_Node;                           //细胞圆形区域的点
+    cell_pointflow_nowcp = cell_points[0];
+    cout<<"细胞内部点的个数为："<<cell_points[0].size()<<endl;
+    for (int i = 0; i < cell_pointflow_nowcp.size(); i++)
+    {
+        circle(inputImage, cell_pointflow_nowcp[i], 2, CV_RGB(100,200,100), -1);
+    }
+    imshow("原始", inputImage);
     if(!capture.isOpened())
     {
         cout<<"原始视频未能正确打开！"<<endl;
@@ -153,6 +167,55 @@ static void onMouse(int event, int x, int y, int, void*)
 /*定义光流跟踪的函数*/
 void tracking(Mat &frame, Mat &output)
 {
+    Mat cell_frame;
+    cvtColor(frame, gray, COLOR_BGR2GRAY);
+    frame.copyTo(output);
+    frame.copyTo(cell_frame);
+//----------------------------------------------【细胞内物质的光流检测】----------------------------------------
+    cvtColor(cell_frame, cell_flow_gray, COLOR_BGR2GRAY);                 //将输入图像转换为灰度图
+    if(cell_flow_pre.empty())
+    {
+        cell_flow_gray.copyTo(cell_flow_pre);
+    }
+    calcOpticalFlowFarneback(cell_flow_pre, cell_flow_gray, cell_flow, 0.5, 2, 15, 3, 5, 1.2, 0);
+    cvtColor(cell_flow_pre, cell_flow, CV_GRAY2BGR);
+    //画出选定的跟踪点的位置，以及保存输出所选点的速度信息
+    for (int l = 0; l < cell_points[0].size(); l++)
+    {
+//        //将flow矩阵中对应的原先选定的那些点的数值赋值给fxy
+         const Point2f& cell_fxy = cell_flow.at<Point2f>(cell_points[0][l].y, cell_points[0][l].x);
+//        //outfile<<"点的运动速度为"<<setiosflags(ios::fixed)<<setprecision(1)<<fxy.x<<endl;
+//        //outfile<<"坐标为"<<"("<<points1[i].x<<","<<points1[i].y<<")"<<"的点的运动速度为"<<fxy.x<<endl;
+//        //定义第i个点运动的速度
+//        double cell_vflow = sqrt(cell_fxy.x*cell_fxy.x + cell_fxy.y*cell_fxy.y);
+//        //定义下一帧的位置（此时的point_n应该是每一次的结果累加，重新选点以后再clear）//
+        //Point2f cell_pointflow_nowcp = Point2f(cell_points[0][l].x+cell_fxy.x, cell_points[0][l].y+cell_fxy.y);
+        cell_pointflow_nowcp[l].x = cell_pointflow_nowcp[l].x + cell_fxy.x;
+        cell_pointflow_nowcp[l].y = cell_pointflow_nowcp[l].y + cell_fxy.y;
+//        //Point2f point_n = Point2f(pointflow_now[i].x, pointflow_now[i].y);
+        //画出所有选定的点下一帧的位置
+        circle(output, cell_pointflow_nowcp[l], 2, CV_RGB(255,0,0), -1);
+    }
+    //swap(cell_pointflow_nowcp, cell_points[0]);
+    swap(cell_flow_pre, cell_flow_gray);
+
+   //            //检测细胞内的物质运动,应该放在最开始的位置检测
+//            for (int l = 0; l < cell_points[0].size(); l++)
+//            {
+//                const Point2f& cell_fxy  = flow.at<Point2f>(cell_points[0][l].y, cell_points[0][l].x);
+////                double cell_vflow = sqrt(cell_fxy.x*cell_fxy.x + cell_fxy.y*cell_fxy.y);
+//                Point2f point_n = Point2f(cell_points[0][l].x+cell_fxy.x, cell_points[0][l].y+cell_fxy.y);
+//                circle(output, point_n, 2, CV_RGB(0,100,100),-1);
+////                cell_points[1][l] = point_n;
+//            }
+////           cell_points[0] = cell_points[1];
+
+
+
+
+
+
+
 //-----------------------------------------------【液面跟踪模块】----------------------------------------------
     if(k > 140)
     {
@@ -166,10 +229,6 @@ void tracking(Mat &frame, Mat &output)
         line(output, Point(node_img.x, node_img.y-17), Point(node_img.x, node_img.y+17), Scalar(0,0,255), 2, 8);//绘制液面位置的线
     }
 //----------------------------------------------【针管内光流计算模块】----------------------------------------
-    cvtColor(frame, gray, COLOR_BGR2GRAY);
-    frame.copyTo(output);
-    //Mat ROI_img;                                                 //定义进行光流计算的区域
-    //Mat ROI_gray;                                                //定义进行光流计算的区域的灰度图
     if(selectObject)
     {
         rectangle(output, Point(selection.x, selection.y),
@@ -244,38 +303,43 @@ void tracking(Mat &frame, Mat &output)
                 //Point2f point_n = Point2f(pointflow_now[i].x, pointflow_now[i].y);
                 //画出所有选定的点下一帧的位置
                 circle(output, pointflow_nowcp[i], 2, CV_RGB(255,0,0), -1);
-                //if(point_n.x < 0)                    point_n.x=0;
-                //if(point_n.y>output.rows-1)          point_n.y = output.rows-1;
-                //if(point_n.x>output.cols-1)          point_n.x = output.cols-1;
-                //if(point_n.y<0)                      point_n.y = 0;
             }
+
             swap(gray_prev, gray);
         }
     }
 
 //---------------------------------------【计算细胞内的运动】--------------------------
-    //对细胞内的区域进行检测
-    if(cell_points[0].size() == 0)
-    {
-        cell_points[0] = firstNode;//初始化特征点的位置
-    }
-    //进行光流计算，得到cell_points[1]的值
-    cvtColor(frame, cell_flow_gray, COLOR_BGR2GRAY);                 //将输入图像转换为灰度图
-    if(cell_flow_pre.empty())
-    {
-        cell_flow_gray.copyTo(cell_flow_pre);
-    }
-    calcOpticalFlowPyrLK(cell_flow_pre, cell_flow_gray, cell_points[0], cell_points[1], status, err);
-    //画出预测得到的特征点的位置
-    for (int j = 0; j < cell_points[1].size(); j++)
-    {
-        //circle(output, cell_points[1][j], 2, Scalar(0,100,200),-1);
-        //画箭头
-        drawarrow(output, cell_points[0][j], cell_points[1][j], 5);
+    // 稠密光流法检测，检测针管物质的时候已经进行了全局光流检测，所有点的运动信息都保存在flow中
+    // 根据得到的细胞的圆形区域的点，画图
 
-    }
-    swap(cell_points[1], cell_points[0]);
-    swap(cell_flow_pre, cell_flow_gray);
+
+
+//
+//    //对细胞内的区域进行检测,稀疏光流法
+//    if(cell_points[0].size() == 0)
+//    {
+//        cell_points[0] = firstNode;//初始化特征点的位置
+//    }
+//    //进行光流计算，得到cell_points[1]的值
+//    cvtColor(frame, cell_flow_gray, COLOR_BGR2GRAY);                 //将输入图像转换为灰度图
+//    if(cell_flow_pre.empty())
+//    {
+//        cell_flow_gray.copyTo(cell_flow_pre);
+//    }
+//    calcOpticalFlowPyrLK(cell_flow_pre, cell_flow_gray, cell_points[0], cell_points[1], status, err);
+//    //画出预测得到的特征点的位置
+//    for (int j = 0; j < cell_points[1].size(); j++)
+//    {
+//        circle(output, cell_points[1][j], 1, Scalar(0,100,200),-1);
+//        //画箭头
+//        drawarrow(output, cell_points[0][j], cell_points[1][j], 5);
+//
+//    }
+//    swap(cell_points[1], cell_points[0]);
+//    swap(cell_flow_pre, cell_flow_gray);
+
+
 //-------------------------------------------【显示最终的画面】----------------------------------------
     imshow(window_name, output);
 
@@ -315,14 +379,12 @@ void drawarrow(Mat output, Point2f f_pre, Point2f f_now, int n)
 
     double ff = sqrt((f_now.x-f_pre.x)*(f_now.x-f_pre.x)+(f_now.y-f_pre.y)*(f_now.y-f_pre.y));        //当前点的速度
     int v_b = ceil(fabs(ff)*2)-1;
-    if(v_b<0){v_b=0;}
-    if(v_b>9){v_b=9;}
+    if(v_b<0) {v_b=0;}
+    if(v_b>9) {v_b=9;}
     line(output,f_pre,f_now,mycolor[v_b]);              //移动轨迹的线
     //画箭头
     Point2f arrow1;
     Point2f arrow2;
-    double xx;
-    double yy;
     double angle = atan2((f_now.y - f_pre.y), (f_now.x-f_pre.x));
     arrow1.x = f_now.x + cos(angle+pi*15/180);
     arrow1.y = f_now.y + sin(angle+pi*15/180);
