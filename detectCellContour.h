@@ -2,7 +2,7 @@
 // Created by arcstone_mems on 2018/6/8.
 // 检测细胞的圆轮廓，用于检测细胞内的物质流动规定感兴趣的区域
 // 包含两种方法检测细胞的轮廓，边缘检测和霍夫圆检测
-//
+// 输出
 
 #ifndef CELL2_DETECTCELLCONTOUR_H
 #define CELL2_DETECTCELLCONTOUR_H
@@ -20,6 +20,7 @@
 
 using namespace std;
 using namespace cv;
+
 //定义结构体，用于返回检测到的圆的取点，圆心坐标以及圆的外轮廓半径
 struct result_circle
 {
@@ -58,6 +59,7 @@ public:
     //光流计算，返回当前帧跟踪得到的点
     vector<Point2f> flow_in_cell(Mat frame, vector<Point2f> points);
     result_circle detect_hough_circle_center(Mat inputImage, int img_h, int img_w);
+    //检测细胞的圆形轮廓，返回检测得到的圆形圆心坐标，半径以及圆内的标志点集合
 
 };
 

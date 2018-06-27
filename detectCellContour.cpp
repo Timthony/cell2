@@ -49,11 +49,11 @@ vector<Point2f> detectCellContour::detect_hough_circle(Mat inputImage,int img_h,
         }
     }
     cell_point1 = cell_point_temp;
-    for (int k = 0; k < cell_point1.size(); k++)
-    {
-        //画出容器内的所有点
-        circle(inputImage, Point2f(cell_point1[k].x,cell_point1[k].y),1,Scalar(0,255,0),-1,8);
-    }
+//    for (int k = 0; k < cell_point1.size(); k++)
+//    {
+//        //画出容器内的所有点
+//        circle(inputImage, Point2f(cell_point1[k].x,cell_point1[k].y),1,Scalar(0,255,0),-1,8);
+//    }
 
     //imshow("【效果图】",inputImage);
     //waitKey(0);
@@ -176,6 +176,7 @@ result_circle detectCellContour::detect_hough_circle_center(Mat inputImage, int 
         cell_center.x = cvRound(cell_circles[0][0]) + img_w*0.07;
         cell_center.y = cvRound(cell_circles[0][1]) + img_h*0.25;
         int radius = cvRound(cell_circles[0][2]);
+        // 画出圆心坐标，以及检测得到的轮廓
         circle(inputImage, cell_center, 3, Scalar(0,255,0), -1, 8, 0);
         circle(inputImage, cell_center, radius, Scalar(155,50,255), 1 , 8, 0);
         //细胞的外轮廓
@@ -197,11 +198,11 @@ result_circle detectCellContour::detect_hough_circle_center(Mat inputImage, int 
         }
     }
     cell_point1 = cell_point_temp;
-    for (int k = 0; k < cell_point1.size(); k++)
-    {
-        //画出容器内的所有点
-        circle(inputImage, Point2f(cell_point1[k].x,cell_point1[k].y),1,Scalar(0,255,0),-1,8);
-    }
+//    for (int k = 0; k < cell_point1.size(); k++)
+//    {
+//        //画出容器内的所有点
+//        circle(inputImage, Point2f(cell_point1[k].x,cell_point1[k].y),1,Scalar(0,255,0),-1,8);
+//    }
 
     //imshow("【效果图】",inputImage);
     //waitKey(0);
