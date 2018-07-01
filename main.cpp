@@ -168,12 +168,13 @@ static void onMouse(int event, int x, int y, int, void*)
 /*定义光流跟踪的函数*/
 void tracking(Mat &frame, Mat &output)
 {
-    Mat cell_frame;
+   // Mat cell_frame;
     cvtColor(frame, gray, COLOR_BGR2GRAY);
     frame.copyTo(output);
-    frame.copyTo(cell_frame);
+    //frame.copyTo(cell_frame);
 //----------------------------------------------【细胞内物质的光流检测】----------------------------------------
-    cvtColor(cell_frame, cell_flow_gray, COLOR_BGR2GRAY);                 //将输入图像转换为灰度图
+//----------------------------------------------【加入第二次全局稠密光流检测后，程序出现明显卡顿】-------------------
+    cvtColor(output, cell_flow_gray, COLOR_BGR2GRAY);                 //将输入图像转换为灰度图
     if(cell_flow_pre.empty())
     {
         cell_flow_gray.copyTo(cell_flow_pre);
@@ -181,8 +182,6 @@ void tracking(Mat &frame, Mat &output)
     //稠密光流检测，输入整幅画面，进行光流计算，然后显示检测到的圆形内部的画面
     calcOpticalFlowFarneback(cell_flow_pre, cell_flow_gray, cell_flow, 0.5, 2, 15, 3, 5, 1.2, 0);
     cvtColor(cell_flow_pre, cell_flow, CV_GRAY2BGR);
-
-
 
     if(flag_track == true)
     {
@@ -222,20 +221,20 @@ void tracking(Mat &frame, Mat &output)
         line(output, Point(node_img.x, node_img.y-17), Point(node_img.x, node_img.y+17), Scalar(0,0,255), 2, 8);//绘制液面位置的线
     }
 //----------------------------------------------【针管内光流计算模块】----------------------------------------
+    // 鼠标勾选针管内需要检测的区域，长方形
     if(selectObject)
     {
         rectangle(output, Point(selection.x, selection.y),
                   Point(selection.x + selection.width,
                         selection.y + selection.height), Scalar(255, 0, 0), 0.5, 8);
     }
-
     //鼠标抬起时，进行检测
     if(trackObject == -1)
     {
         //画出鼠标勾选的矩形
-        rectangle(output, Point(selection.x, selection.y),
-                  Point(selection.x + selection.width,
-                        selection.y + selection.height), Scalar(255, 0, 0), 0.5, 8);
+//        rectangle(output, Point(selection.x, selection.y),
+//                  Point(selection.x + selection.width,
+//                        selection.y + selection.height), Scalar(255, 0, 0), 0.5, 8);
         //cout<<"矩形的长度和宽度为："<<selection.height<<","<<selection.width<<endl;
        // 对整个画面的每个像素点进行遍历，如果此点在所画矩形内，那么加入点的集合
         for (int y = 0; y < firstImage.rows; y+= 8)
