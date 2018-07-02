@@ -215,11 +215,24 @@ void tracking(Mat &frame, Mat &output)
         getNode(frame);
         cout<<"-----------最终标志点的坐标为:"<<node_img<<endl;
     }
-    //绘制液面位置的标志线
+    //绘制液面位置的标志线和标识文字
+    // 标志文字定义
+    string text = "marker";
+    int font_face = cv::FONT_HERSHEY_SIMPLEX;
+    double font_scale = 0.6 ;
+    int thickness = 1;
+    int baseline;
+    Size text_size = getTextSize(text, font_face, font_scale, thickness, &baseline);
+    Point origin;
+    origin.x = node_img.x - text_size.width/2;
+    origin.y = node_img.y - 40;
     if(node_img.x != 0 && node_img.y != 0)
     {
         circle(output, node_img, 2, CV_RGB(0,0,255), -1);//绘制检测得到的液面位置标志点
         line(output, Point(node_img.x, node_img.y-17), Point(node_img.x, node_img.y+17), Scalar(0,0,255), 2, 8);//绘制液面位置的线
+
+        putText(output, text, origin, font_face, font_scale, Scalar(0,255,255), thickness, 8, 0);               // 将液面的标识文字画出
+
     }
 //----------------------------------------------【针管内光流计算模块】----------------------------------------
     // 鼠标勾选针管内需要检测的区域，长方形
