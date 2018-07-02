@@ -57,6 +57,7 @@ bool flag_track = false;                                             //设置标
 vector<uchar> status;
 vector<float> err;
 Mat cell_flow_gray, cell_flow_pre;
+Mat c_cell_flow;                                                     // 存放
 const double pi=3.14;
 Point2f cell_center;
 //-------------------------------------【全局函数声明】----------------------------------------
@@ -181,7 +182,7 @@ void tracking(Mat &frame, Mat &output)
     }
     //稠密光流检测，输入整幅画面，进行光流计算，然后显示检测到的圆形内部的画面
     calcOpticalFlowFarneback(cell_flow_pre, cell_flow_gray, cell_flow, 0.5, 2, 15, 3, 5, 1.2, 0);
-    cvtColor(cell_flow_pre, cell_flow, CV_GRAY2BGR);
+    //cvtColor(cell_flow_pre, c_cell_flow, CV_GRAY2BGR);
 
     if(flag_track == true)
     {
@@ -192,8 +193,8 @@ void tracking(Mat &frame, Mat &output)
             const Point2f& cell_fxy = cell_flow.at<Point2f>(cell_points[0][l].y, cell_points[0][l].x);
             cell_pointflow_nowcp[l].x = cell_pointflow_nowcp[l].x + cell_fxy.x;
             cell_pointflow_nowcp[l].y = cell_pointflow_nowcp[l].y + cell_fxy.y;
-            //画出所有选定的点下一帧的位置
-            circle(output, cell_pointflow_nowcp[l], 2, CV_RGB(255,0,0), -1);
+//            //画出所有选定的点下一帧的位置
+            circle(output, cell_pointflow_nowcp[l], 2, CV_RGB(0,255,0), -1);
         }
     }
     // 在最终的输出图像中画出起始点的位置（细胞内部），只画一次就行了
