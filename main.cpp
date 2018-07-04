@@ -14,7 +14,7 @@
 #include "detectCellContour.h"
 using namespace std;
 using namespace cv;
-
+#define UNKNOWN_FLOW_THRESH 1e9
 //-------------------------------------【全局变量声明】----------------------------------------
 string window_name = "flow tracking";                                //定义窗口的名称
 string window_name2 = "原始图窗口";                                    //原始视频
@@ -67,6 +67,8 @@ void tracking(Mat &frame, Mat &output);                              //跟踪函
 Point getNode(Mat frame_n);
 void track_cell_in(Mat &frame1, Mat &output1);                       //检测细胞内部的物质
 void drawarrow(Mat output, Point2f f_pre, Point2f f_now, int n);     //画箭头
+void motionToColor(Mat flow, Mat &color);                            //孟塞尔颜色系统
+void makecolorwheel(vector<Scalar> &colorwheel);                     //孟赛尔颜色系统的相关函数
 //--------------------------------------【主函数】--------------------------------------------
 int main()
 {
@@ -193,8 +195,9 @@ void tracking(Mat &frame, Mat &output)
             const Point2f& cell_fxy = cell_flow.at<Point2f>(cell_points[0][l].y, cell_points[0][l].x);
             cell_pointflow_nowcp[l].x = cell_pointflow_nowcp[l].x + cell_fxy.x;
             cell_pointflow_nowcp[l].y = cell_pointflow_nowcp[l].y + cell_fxy.y;
-//            //画出所有选定的点下一帧的位置
+            //画出所有选定的点下一帧的位置
             circle(output, cell_pointflow_nowcp[l], 2, CV_RGB(0,255,0), -1);
+            //drawarrow(output, cell_fxy, cell_pointflow_nowcp[l], 5);
         }
     }
     // 在最终的输出图像中画出起始点的位置（细胞内部），只画一次就行了
@@ -356,7 +359,7 @@ Point getNode(Mat frame_n)
     return node_img;
 }
 
-void drawarrow(Mat output, Point2f f_pre, Point2f f_now, int n)
+void drawarrow(Mat output, Point2f f_fxy, Point2f f_now, int n)
 {
     Scalar mycolor[10];
     mycolor[0]=CV_RGB(0,0,170);
@@ -370,25 +373,110 @@ void drawarrow(Mat output, Point2f f_pre, Point2f f_now, int n)
     mycolor[8]=CV_RGB(255,170,0);
     mycolor[9]=CV_RGB(255,85,0);
 
-    double ff = sqrt((f_now.x-f_pre.x)*(f_now.x-f_pre.x)+(f_now.y-f_pre.y)*(f_now.y-f_pre.y));        //当前点的速度
-    int v_b = ceil(fabs(ff)*2)-1;
-    if(v_b<0) {v_b=0;}
-    if(v_b>9) {v_b=9;}
-    line(output,f_pre,f_now,mycolor[v_b]);              //移动轨迹的线
+    //double ff = sqrt(f_fxy.x*f_fxy.x + f_fxy.y*f_fxy.y);        //当前点的速度
+    //int v_b = ceil(fabs(ff)*(10/n))-1;
+    //if(v_b<0) {v_b=0;}
+    //if(v_b>9) {v_b=9;}
+    Point2f f_pre = f_now - f_fxy;
+    //line(output, f_pre, f_now, Scalar(255,0,0),2);              //移动轨迹的线
     //画箭头
     Point2f arrow1;
     Point2f arrow2;
-    double angle = atan2((f_now.y - f_pre.y), (f_now.x-f_pre.x));
+    double xx = f_fxy.x;
+    double yy = f_fxy.y;
+    double angle = atan2(yy, xx);
     arrow1.x = f_now.x + cos(angle+pi*15/180);
     arrow1.y = f_now.y + sin(angle+pi*15/180);
-    line(output, f_now, arrow1, mycolor[v_b]);
+    line(output, f_now, arrow1, Scalar(255,0,0),2);
     arrow2.x = f_now.x + cos(angle-pi*15/180);
     arrow2.y = f_now.y + sin(angle-pi*15/180);
-    line(output, f_now, arrow2, mycolor[v_b]);
+    line(output, f_now, arrow2, Scalar(255,0,0),2);
 
-    circle(output, f_now, 1, Scalar(255,0,0),-1);
+    circle(output, f_pre, 2, Scalar(255,0,0),-1);
+}
+// 制作颜色系统
+void makecolorwheel(vector<Scalar> &colorwheel)
+{
+    int RY = 15;
+    int YG = 6;
+    int GC = 4;
+    int CB = 11;
+    int BM = 13;
+    int MR = 6;
 
+    int i;
+
+    for (i = 0; i < RY; i++)   { colorwheel.push_back(Scalar(255,           255*i/RY,       0)); }
+    for (i = 0; i < YG; i++)   { colorwheel.push_back(Scalar(255-255*i/YG,  255,            0)); }
+    for (i = 0; i < RY; i++)   { colorwheel.push_back(Scalar(0,             255,            255*i/GC)); }
+    for (i = 0; i < CB; i++)   { colorwheel.push_back(Scalar(0,             255-255*i/CB,   255));}
+    for (i = 0; i < BM; i++)   { colorwheel.push_back(Scalar(255*i/BM,      0,              255));}
+    for (i = 0; i < MR; i++)   { colorwheel.push_back(Scalar(255,           0,              255-255*i/MR));}
 }
 
+void motionToColor(Mat flow, Mat &color)
+{
+    if(color.empty())
+    {
+        color.create(flow.rows, flow.cols, CV_8UC3);
+    }
+    static vector<Scalar> colorwheel;
+    if(colorwheel.empty())
+    {
+        makecolorwheel(colorwheel);                                   // 创建新的颜色系统
+    }
 
+    float maxrad = -1;                                                // 决定移动的范围
+    //找到最大的光流用来初始化fx和fy
+    for (int i = 0; i < flow.rows; ++i)
+    {
+        for (int j = 0; j < flow.cols; ++j)
+        {
+            Vec2f flow_at_point = flow.at<Vec2f>(i, j);
+            float fx = flow_at_point[0];
+            float fy = flow_at_point[1];
+            if((fabs(fx) > UNKNOWN_FLOW_THRESH) || fabs(fy) > UNKNOWN_FLOW_THRESH)
+            {
+                continue;
+            }
+            float rad = sqrt(fx*fx + fy*fy);
+            maxrad = maxrad > rad? maxrad : rad;
+        }
+    }
+    for (int i= 0; i < flow.rows; ++i)
+    {
+        for (int j = 0; j < flow.cols; ++j)
+        {
+            uchar *data = color.data + color.step[0] * i + color.step[1] * j;
+            Vec2f flow_at_point = flow.at<Vec2f>(i, j);
 
+            float fx = flow_at_point[0] / maxrad;
+            float fy = flow_at_point[1] / maxrad;
+            if ((fabs(fx) >  UNKNOWN_FLOW_THRESH) || (fabs(fy) >  UNKNOWN_FLOW_THRESH))
+            {
+                data[0] = data[1] = data[2] = 0;
+                continue;
+            }
+            float rad = sqrt(fx * fx + fy * fy);
+
+            float angle = atan2(-fy, -fx) / CV_PI;
+            float fk = (angle + 1.0) / 2.0 * (colorwheel.size()-1);
+            int k0 = (int)fk;
+            int k1 = (k0 + 1) % colorwheel.size();
+            float f = fk - k0;
+            //f = 0; // uncomment to see original color wheel
+
+            for (int b = 0; b < 3; b++)
+            {
+                float col0 = colorwheel[k0][b] / 255.0;
+                float col1 = colorwheel[k1][b] / 255.0;
+                float col = (1 - f) * col0 + f * col1;
+                if (rad <= 1)
+                    col = 1 - rad * (1 - col); // increase saturation with radius
+                else
+                    col *= .75; // out of range
+                data[2 - b] = (int)(255.0 * col);
+            }
+        }
+    }
+}
