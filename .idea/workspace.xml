@@ -13,9 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="522870a2-a53b-47cf-aa7f-2921629c4dda" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cell2.dir/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cell2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cell2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/data.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -32,8 +29,17 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="454" column="17" selection-start-line="454" selection-start-column="17" selection-end-line="454" selection-end-column="17" />
+            <state relative-caret-position="-3101">
+              <caret line="313" column="29" lean-forward="true" selection-start-line="313" selection-start-column="29" selection-end-line="313" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detectCellContour.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/detectCellContour.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="161" column="58" lean-forward="true" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -85,7 +91,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="642" />
+    <option name="x" value="368" />
     <option name="y" value="23" />
     <option name="width" value="1871" />
     <option name="height" value="1494" />
@@ -197,7 +203,8 @@
       <workItem from="1530600270648" duration="716000" />
       <workItem from="1530605789459" duration="317000" />
       <workItem from="1530618709918" duration="742000" />
-      <workItem from="1530667240211" duration="10936000" />
+      <workItem from="1530667240211" duration="11149000" />
+      <workItem from="1530753023501" duration="2027000" />
     </task>
     <task id="LOCAL-00001" summary="第二次添加">
       <created>1527150377046</created>
@@ -210,10 +217,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102564000" />
+    <option name="totallyTimeSpent" value="104804000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="642" y="23" width="1871" height="1494" extended-state="0" />
+    <frame x="368" y="23" width="1871" height="1494" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16729023" />
@@ -221,12 +228,12 @@
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32957748" />
       <window_info anchor="bottom" id="CMake" order="7" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32957748" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32957748" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32957748" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -591,13 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/detectCellContour.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="178" column="27" selection-start-line="178" selection-start-column="27" selection-end-line="178" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/data.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="902">
@@ -612,10 +612,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/detectCellContour.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="161" column="58" lean-forward="true" selection-start-line="161" selection-start-column="37" selection-end-line="161" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="454" column="17" selection-start-line="454" selection-start-column="17" selection-end-line="454" selection-end-column="17" />
+        <state relative-caret-position="-3101">
+          <caret line="313" column="29" lean-forward="true" selection-start-line="313" selection-start-column="29" selection-end-line="313" selection-end-column="29" />
         </state>
       </provider>
     </entry>

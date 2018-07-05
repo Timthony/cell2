@@ -60,6 +60,7 @@ Mat cell_flow_gray, cell_flow_pre;
 Mat c_cell_flow;                                                     // 存放
 const double pi=3.14;
 Point2f cell_center;
+Mat motion2color;
 //-------------------------------------【全局函数声明】----------------------------------------
 void drawOptFlowMap(const Mat& flow, Mat& cflowmap, int step, const Scalar& color);
 static void onMouse(int event, int x, int y, int, void*);
@@ -185,7 +186,12 @@ void tracking(Mat &frame, Mat &output)
     //稠密光流检测，输入整幅画面，进行光流计算，然后显示检测到的圆形内部的画面
     calcOpticalFlowFarneback(cell_flow_pre, cell_flow_gray, cell_flow, 0.5, 2, 15, 3, 5, 1.2, 0);
     //cvtColor(cell_flow_pre, c_cell_flow, CV_GRAY2BGR);
-
+    // 使用孟塞尔颜色系统表示光流，不同颜色表示不同的运动方向，深浅就表示运动的快慢了
+    // 没有必要表示整张图像，只要表示细胞内和针管即可
+    // 将获得光流进行切割，取出ROI区域
+    Mat cell_flow_roi = cell_flow(Rect(image_cols*0.07, image_rows*0.25, image_cols*0.9, image_rows*0.5));
+    motionToColor(cell_flow_roi, motion2color);
+    imshow("孟塞尔颜色系统", motion2color);
     if(flag_track == true)
     {
         //更新选定的跟踪点的位置，以及保存输出所选点的速度信息
@@ -198,6 +204,7 @@ void tracking(Mat &frame, Mat &output)
             //画出所有选定的点下一帧的位置
             circle(output, cell_pointflow_nowcp[l], 2, CV_RGB(0,255,0), -1);
             //drawarrow(output, cell_fxy, cell_pointflow_nowcp[l], 5);
+
         }
     }
     // 在最终的输出图像中画出起始点的位置（细胞内部），只画一次就行了
@@ -313,7 +320,6 @@ void tracking(Mat &frame, Mat &output)
                 //画出所有选定的点下一帧的位置
                 circle(output, pointflow_nowcp[i], 2, CV_RGB(255,0,0), -1);
             }
-
             swap(gray_prev, gray);
         }
     }
@@ -413,7 +419,9 @@ void makecolorwheel(vector<Scalar> &colorwheel)
     for (i = 0; i < BM; i++)   { colorwheel.push_back(Scalar(255*i/BM,      0,              255));}
     for (i = 0; i < MR; i++)   { colorwheel.push_back(Scalar(255,           0,              255-255*i/MR));}
 }
-
+// 孟塞尔颜色系统函数，用于光流法显示追踪结果，光流计算结果
+// 不同颜色表示不同的运动方向，深浅就表示运动的快慢了
+// 可以根据所需要的情况进行修改，细胞内需要方向和速度快慢，针管内需要速度即可
 void motionToColor(Mat flow, Mat &color)
 {
     if(color.empty())
@@ -480,3 +488,4 @@ void motionToColor(Mat flow, Mat &color)
         }
     }
 }
+// 针管内的孟塞尔颜色系统，深浅表快慢，二维的图像，所以，颜色可以少几样，
