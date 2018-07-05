@@ -45,22 +45,6 @@ ctime
 -
 
 /Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/main.cpp
-iostream
--
-fstream
--
-opencv2/opencv.hpp
--
-opencv2/video.hpp
--
-opencv2/highgui.hpp
--
-opencv2/imgproc.hpp
--
-detectEdge.h
-/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectEdge.h
-detectCellContour.h
-/Users/arcstone_mems_108/Desktop/keyan/githubproject/cell2/detectCellContour.h
 
 /usr/local/include/boost/assert.hpp
 boost/config.hpp
