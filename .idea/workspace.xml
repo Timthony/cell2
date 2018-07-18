@@ -13,9 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="522870a2-a53b-47cf-aa7f-2921629c4dda" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cell2.dir/main.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cell2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cell2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/data.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -32,8 +30,12 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="524" lean-forward="true" selection-start-line="524" selection-end-line="524" />
+            <state relative-caret-position="419">
+              <caret line="202" column="36" lean-forward="true" selection-start-line="202" selection-start-column="36" selection-end-line="202" selection-end-column="36" />
+              <folding>
+                <element signature="e#156#175#0" expanded="true" />
+                <marker date="1531911766314" expanded="true" signature="18478:18808" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,7 +88,7 @@
       <file leaf-file-name="思路.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/思路.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1650">
+            <state relative-caret-position="1045">
               <caret line="75" selection-start-line="75" selection-end-line="75" />
             </state>
           </provider>
@@ -120,11 +122,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="455" />
-    <option name="y" value="135" />
-    <option name="width" value="1803" />
-    <option name="height" value="1257" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="358" />
+    <option name="y" value="23" />
+    <option name="width" value="2040" />
+    <option name="height" value="1498" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -150,7 +152,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -158,10 +159,16 @@
               <item name="cell2" type="b2602c69:ProjectViewProjectNode" />
               <item name="cell2" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="cell2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cell2" type="462c0819:PsiDirectoryNode" />
+              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -240,7 +247,8 @@
       <workItem from="1531709383714" duration="260000" />
       <workItem from="1531740764236" duration="2000" />
       <workItem from="1531792192631" duration="30000" />
-      <workItem from="1531796839015" duration="3889000" />
+      <workItem from="1531796839015" duration="3960000" />
+      <workItem from="1531878006793" duration="4018000" />
     </task>
     <task id="LOCAL-00001" summary="第二次添加">
       <created>1527150377046</created>
@@ -253,18 +261,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121611000" />
+    <option name="totallyTimeSpent" value="125700000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="455" y="135" width="1803" height="1257" extended-state="0" />
-    <editor active="true" />
+    <frame x="358" y="23" width="2040" height="1498" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09151414" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11666667" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3279797" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3274648" />
       <window_info anchor="bottom" id="CMake" order="7" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21386306" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2127809" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32957748" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -301,17 +308,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="8" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/detectEdge.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/思路.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1518">
@@ -613,13 +613,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/思路.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="75" selection-start-line="75" selection-end-line="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/detectCellContour.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3542">
@@ -631,13 +624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/data.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="263015" lean-forward="true" selection-start-line="263015" selection-end-line="263015" />
         </state>
       </provider>
     </entry>
@@ -655,10 +641,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/include/opencv2/core/mat.inl.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="829" selection-start-line="829" selection-end-line="829" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/思路.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1045">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/data.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-58">
+          <caret line="48473" selection-start-line="48473" selection-end-line="48473" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="524" lean-forward="true" selection-start-line="524" selection-end-line="524" />
+        <state relative-caret-position="419">
+          <caret line="202" column="36" lean-forward="true" selection-start-line="202" selection-start-column="36" selection-end-line="202" selection-end-column="36" />
+          <folding>
+            <element signature="e#156#175#0" expanded="true" />
+            <marker date="1531911766314" expanded="true" signature="18478:18808" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
